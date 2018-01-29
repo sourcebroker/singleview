@@ -21,21 +21,25 @@ Usage
 ************
 
 Each configuration of the singleview extension has to be registered in your ext_localconf.php file using
-\SourceBroker\Singleview\Service\SingleViewService::registerConfig static method. Parameters which needs to be passed
- there are: (1) PID number of the list view page, (2) PID number of the single view page, (3)
+\SourceBroker\Singleview\Service\SingleViewService::registerConfig static method as below.
 
 ::
 
     <?php
     \SourceBroker\Singleview\Service\SingleViewService::registerConfig(
-        2,
+        // PID of the list view page
+        2, 
+        // PID of the single view page
         50,
+        // Closure which returns boolean or boolean value as a condition which needs to be met to apply content_from_pid replacement
         function() {
             $newsParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1');
  
             return !empty($newsParams['news']);
         },
+        // (optional) Array of strings with names of the fields which will be copied from single page to list page
         ['tx_local_breadcrumb_hide_all'],
+        // (optional) Closure which returns string or string which will be used to create hashBase
         function() {
             $newsParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1');
 
