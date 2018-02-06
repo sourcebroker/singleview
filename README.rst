@@ -6,7 +6,9 @@ TYPO3 Extension ``singleview``
 What does it do?
 ****************
 
-This extension adds few features which improves implementation of single views of other extensions.
+Main purpose of this extension is to allow to display single view on different template while **keeping URLs user and SEO friendly**.
+For sure you can easily imagine pages where boxes in sidebar are different on the single page than on the list page. Normally in such cases it is needed to insert single plugin on different page (usually subpage of list view) which finally makes URLs ugly because of additional segment (e.g. */news/news/lorem-ipsum-dolor*).
+By using **singleview** extension you can easily omit the useless path segment in your URL (*/news* in example above), but still keep single plugin on different page with different page template.
 
 Installation
 ************
