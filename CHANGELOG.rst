@@ -6,6 +6,7 @@ Changelog
 1) Fix error in docs.
 2) Update Docs.
 3) Add styleci.io PSR-2 code changes.
+4) Update phpdocs.
 
 1.2.0
 ~~~~~

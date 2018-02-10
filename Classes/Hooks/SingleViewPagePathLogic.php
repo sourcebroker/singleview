@@ -8,8 +8,7 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Frontend\Page\PageRepository;
 
 /**
- * Class PagePathLogic
- *
+ * Class SingleViewPagePathLogic
  * @package SourceBroker\Singleview\Hooks
  */
 class SingleViewPagePathLogic

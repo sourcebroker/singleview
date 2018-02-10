@@ -6,7 +6,6 @@ use SourceBroker\Singleview\Service\SingleViewService;
 
 /**
  * Class HashBase
- *
  * @package SourceBroker\Singleview\Hooks
  */
 class HashBase

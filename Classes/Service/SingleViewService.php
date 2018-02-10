@@ -6,8 +6,7 @@ use SourceBroker\Singleview\Domain\Model\SingleViewConfig;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
- * Class PagePathLogic
- *
+ * Class SingleViewService
  * @package SourceBroker\Singleview\Service
  */
 class SingleViewService

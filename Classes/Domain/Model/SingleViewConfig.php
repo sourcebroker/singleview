@@ -3,9 +3,8 @@
 namespace SourceBroker\Singleview\Domain\Model;
 
 /**
- * Class PagePathLogic
- *
- * @package SourceBroker\Singleview\Hooks
+ * Class SingleViewConfig
+ * @package SourceBroker\Singleview\Domain\Model
  */
 class SingleViewConfig
 {

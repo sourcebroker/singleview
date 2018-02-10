@@ -7,8 +7,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class PageNotFoundOnMissingChash
- *
- * @package SourceBroker\Singleview\Hook
+ * @package SourceBroker\Singleview\Hooks
  */
 class PageNotFoundOnMissingChash
 {
