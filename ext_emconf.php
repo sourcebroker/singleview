@@ -2,19 +2,20 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Singleview',
-    'description' => '',
+    'description' => 'Allows to display single view on the same page as list view in order to keep urls user and SEO friendly',
     'category' => 'plugin',
-    'author' => '',
-    'author_email' => '',
+    'author' => 'SourceBroker Team',
+    'author_email' => 'office@sourcebroker.net',
+    'author_company' => 'SourceBroker',
     'state' => 'stable',
     'internal' => '',
-    'uploadfolder' => '0',
+    'uploadFolder' => false,
     'createDirs' => '',
-    'clearCacheOnLoad' => 0,
-    'version' => '1.0.0',
+    'clearCacheOnLoad' => true,
+    'version' => '1.1.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-8.7.99',
+            'typo3' => '8.7.0-8.7.999',
             'php' => '7.0-7.2'
         ],
         'conflicts' => [],

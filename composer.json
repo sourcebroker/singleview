@@ -1,14 +1,37 @@
 {
-    "name": "sourcebroker/singleview",
-    "type": "typo3-cms-extension",
-    "description": "",
-    "authors": [],
-    "require": {
-        "typo3/cms-core": "^8.7.1"
+  "name": "sourcebroker/singleview",
+  "type": "typo3-cms-extension",
+  "description": "Allows to display single view on the same page as list view in order to keep urls user and SEO friendly",
+  "require": {
+    "typo3/cms-core": "~8.7.0"
+  },
+  "authors": [
+    {
+      "name": "Krystian Szymukowicz",
+      "email": "k.szymukowicz@gmail.com"
     },
-    "autoload": {
-        "psr-4": {
-            "SourceBroker\\Singleview\\": "Classes"
-        }
+    {
+      "name": "Karol Lamparski",
+      "email": "klamparski@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SourceBroker\\Singleview\\": "Classes"
+    }
+  },
+  "replace": {
+    "singleview": "self.version",
+    "typo3-ter/singleview": "self.version"
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/Web"
+    }
+  }
 }
