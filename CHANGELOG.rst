@@ -7,6 +7,7 @@ Changelog
 2) Add ext icon.
 3) Add ext licence.
 4) Add ext badges.
+5) Update ext_emconf.php ext version.
 
 1.1.0
 ~~~~~
