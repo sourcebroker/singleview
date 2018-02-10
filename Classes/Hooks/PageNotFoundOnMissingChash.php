@@ -36,5 +36,4 @@ class PageNotFoundOnMissingChash
     {
         return !empty(GeneralUtility::_GET()['cHash']);
     }
-
 }

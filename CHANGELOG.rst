@@ -5,10 +5,11 @@ Changelog
 ~~~~~
 1) Fix error in docs.
 2) Update Docs.
+3) Add styleci.io PSR-2 code changes.
 
 1.2.0
 ~~~~~
-1) Add styles.ci code checks / reformat code according to PSR-2.
+1) Add styleci.io code checks / reformat code according to PSR-2.
 2) Add ext icon.
 3) Add ext licence.
 4) Add ext badges.

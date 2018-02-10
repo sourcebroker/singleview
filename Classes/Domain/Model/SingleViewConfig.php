@@ -134,5 +134,4 @@ class SingleViewConfig
     {
         return $this->throwPageNotFoundOnMissingChash;
     }
-
 }

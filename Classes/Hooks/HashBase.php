@@ -31,5 +31,4 @@ class HashBase
             $params['hashParameters']['singleview']['custom'] = $customHashBasePart;
         }
     }
-
 }
