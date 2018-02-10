@@ -15,6 +15,7 @@
       "email": "klamparski@gmail.com"
     }
   ],
+  "license": ["GPL-2.0-or-later"],
   "autoload": {
     "psr-4": {
       "SourceBroker\\Singleview\\": "Classes"

@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+1.2.2
+~~~~~
+1) Add missing licence in composer.json.
+
 1.2.1
 ~~~~~
 1) Fix error in docs.
