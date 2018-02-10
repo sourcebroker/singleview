@@ -4,6 +4,7 @@ Changelog
 1.2.2
 ~~~~~
 1) Add missing licence in composer.json.
+2) Update ext_emconf.php ext version.
 
 1.2.1
 ~~~~~
