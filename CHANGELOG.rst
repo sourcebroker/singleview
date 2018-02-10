@@ -5,6 +5,7 @@ Changelog
 ~~~~~
 1) Add styles.ci code checks / reformat code according to PSR-2.
 2) Add ext icon.
+3) Add ext licence.
 
 1.1.0
 ~~~~~
