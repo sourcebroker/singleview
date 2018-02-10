@@ -1,7 +1,7 @@
 {
   "name": "sourcebroker/singleview",
   "type": "typo3-cms-extension",
-  "description": "Allows to display single view on the same page as list view in order to keep urls user and SEO friendly",
+  "description": "Allows to display single view on different page than list view and still keep urls user and SEO friendly",
   "require": {
     "typo3/cms-core": "~8.7.0"
   },

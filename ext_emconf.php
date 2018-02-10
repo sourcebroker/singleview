@@ -2,7 +2,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Singleview',
-    'description' => 'Allows to display single view on the same page as list view in order to keep urls user and SEO friendly',
+    'description' => 'Allows to display single view on different page than list view and still keep urls user and SEO friendly',
     'category' => 'plugin',
     'author' => 'SourceBroker Team',
     'author_email' => 'office@sourcebroker.net',
