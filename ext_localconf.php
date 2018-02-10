@@ -25,16 +25,16 @@ $boot = function () {
 
     if ($singleViewConf['pageNotFoundOnMissingChash']['enabled']) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['determineId-PreProcessing']['singleview_pageNotFoundOnMissingChash']
-            = \SourceBroker\Singleview\Hooks\PageNotFoundOnMissingChash::class.'->init';
+            = \SourceBroker\Singleview\Hooks\PageNotFoundOnMissingChash::class . '->init';
     }
 
     if ($singleViewConf['hashBaseCustomization']['enabled']) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['createHashBase']['singleview_hashBaseCustomization'] =
-            \SourceBroker\Singleview\Hooks\HashBase::class.'->init';
+            \SourceBroker\Singleview\Hooks\HashBase::class . '->init';
     }
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['configArrayPostProc'][] =
-        \SourceBroker\Singleview\Hooks\SingleViewPagePathLogic::class.'->init';
+        \SourceBroker\Singleview\Hooks\SingleViewPagePathLogic::class . '->init';
 };
 
 $boot();

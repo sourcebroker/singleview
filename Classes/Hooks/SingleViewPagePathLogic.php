@@ -50,7 +50,7 @@ class SingleViewPagePathLogic
         return $this->getDb()->exec_SELECTgetSingleRow(
             '*',
             'pages',
-            'uid = '.$id.' '.$this->getPageRepository()->enableFields('pages')
+            'uid = ' . $id . ' ' . $this->getPageRepository()->enableFields('pages')
         );
     }
 
