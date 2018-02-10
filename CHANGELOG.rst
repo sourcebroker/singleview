@@ -8,6 +8,7 @@ Changelog
 3) Add styleci.io PSR-2 code changes.
 4) Update phpdocs.
 5) Change ext description.
+6) Update ext_emconf.php ext version.
 
 1.2.0
 ~~~~~
