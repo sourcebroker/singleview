@@ -4,6 +4,7 @@ Changelog
 1.2.0
 ~~~~~
 1) Add styles.ci code checks / reformat code according to PSR-2.
+2) Add ext icon.
 
 1.1.0
 ~~~~~
