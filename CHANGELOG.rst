@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+1.2.1
+~~~~~
+1) Fix error in docs.
+2) Update Docs.
+
 1.2.0
 ~~~~~
 1) Add styles.ci code checks / reformat code according to PSR-2.
