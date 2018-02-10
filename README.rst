@@ -34,7 +34,7 @@ realurl links. You will get something like below. Single view on separate page n
   https://www.example.com/list/detail/title-of-single-item/
 
 If you use ``ext:singleview`` then single view can be on different page than list view but the realurl links will still
-look nice like below - so no "detail" part.
+look nice like below - so no ``/detail/`` part.
 
 ::
 
