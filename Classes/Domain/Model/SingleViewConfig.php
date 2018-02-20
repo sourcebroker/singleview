@@ -34,11 +34,6 @@ class SingleViewConfig
     private $hashBase = '';
 
     /**
-     * @var boolean
-     */
-    private $throwPageNotFoundOnMissingChash = true;
-
-    /**
      * @return int
      */
     public function getListPid()
@@ -124,13 +119,5 @@ class SingleViewConfig
     public function setHashBase($hashBase)
     {
         $this->hashBase = $hashBase;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isThrowPageNotFoundOnMissingChash()
-    {
-        return $this->throwPageNotFoundOnMissingChash;
     }
 }
