@@ -107,7 +107,7 @@ class SingleViewConfig
      */
     public function isConditionMatch()
     {
-        return is_callable($this->condition) ? !!($this->condition)() : !!$this->condition;
+        return is_callable($this->condition) ? call_user_func($this->condition) : !!$this->condition;
     }
 
     /**
@@ -115,7 +115,7 @@ class SingleViewConfig
      */
     public function getHashBase()
     {
-        return is_callable($this->hashBase) ? (string)($this->hashBase)() : $this->hashBase;
+        return is_callable($this->hashBase) ? (string)call_user_func($this->hashBase) : $this->hashBase;
     }
 
     /**
@@ -129,7 +129,7 @@ class SingleViewConfig
     /**
      * @return bool
      */
-    public function isThrowPageNotFoundOnMissingChash(): bool
+    public function isThrowPageNotFoundOnMissingChash()
     {
         return $this->throwPageNotFoundOnMissingChash;
     }

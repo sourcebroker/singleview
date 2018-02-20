@@ -44,7 +44,7 @@ class SingleViewPagePathLogic
      *
      * @return array|false|null
      */
-    private function getPageRecordById(int $id)
+    private function getPageRecordById($id)
     {
         return $this->getDb()->exec_SELECTgetSingleRow(
             '*',
@@ -56,7 +56,7 @@ class SingleViewPagePathLogic
     /**
      * @return TypoScriptFrontendController
      */
-    private function getTsfe(): TypoScriptFrontendController
+    private function getTsfe()
     {
         return $GLOBALS['TSFE'];
     }
@@ -64,7 +64,7 @@ class SingleViewPagePathLogic
     /**
      * @return PageRepository
      */
-    private function getPageRepository(): PageRepository
+    private function getPageRepository()
     {
         return $this->getTsfe()->sys_page;
     }
@@ -72,7 +72,7 @@ class SingleViewPagePathLogic
     /**
      * @return DatabaseConnection
      */
-    private function getDb(): DatabaseConnection
+    private function getDb()
     {
         return $GLOBALS['TYPO3_DB'];
     }
