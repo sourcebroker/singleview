@@ -10,7 +10,7 @@ $boot = function () {
         ],
         'hashBaseCustomization' => [
             // Turn on/off hash base customization for single page
-            'enabled' => true,
+            'enabled' => (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8005000),
         ],
     ];
 
