@@ -6,6 +6,7 @@ Changelog
 1) Implement support for TYPO3 7.6 and PHP 5.6.
 2) Disable hashBase customization by default for TYPO3 higher or equal 8.5
 3) Remove useless feature to throw page not found exception on missing cHash.
+4) Change $boot to call_user_func()
 
 1.2.2
 ~~~~~

@@ -2,7 +2,7 @@
 
 defined('TYPO3_MODE') || die('Access denied.');
 
-$boot = function () {
+call_user_func(function () {
     $defaultConfiguration = [
         'hashBaseCustomization' => [
             // Turn on/off hash base customization for single page
@@ -26,7 +26,4 @@ $boot = function () {
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['configArrayPostProc'][] =
         \SourceBroker\Singleview\Hooks\SingleViewPagePathLogic::class . '->init';
-};
-
-$boot();
-unset($boot);
+});
