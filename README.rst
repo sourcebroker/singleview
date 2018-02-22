@@ -77,14 +77,11 @@ Parameters:
 
 3) Third param is closure which returns boolean (or boolean value as a condition) which needs to be met to show
    single page on list view page. Closure is good here because at ext_localconf.php level the ext:realurl did not decoded
-   yet the url so the value of \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1') is empty. But at the place
-   the closure is run the \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1') will return good value.
+   yet the url so the value of ``\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1')`` is empty. But at the place
+   the closure is run the ``\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1')`` will return good value.
 
 4) Fourth param is optional and its array of strings with names of the fields which will be copied from single page
-   to list page.
-
-   If you use backend_layouts then probably you should put there ['backend_layout'] so at the page with list view
-   the proper 'backend_layout' form single view will be shown.
+   to list page. If you use backend_layouts for managing your layouts then probably you should put there ['backend_layout']
 
 
 **IMPORTANT!**
