@@ -5,8 +5,7 @@ defined('TYPO3_MODE') || die('Access denied.');
 call_user_func(function () {
     $defaultConfiguration = [
         'hashBaseCustomization' => [
-            // Turn on/off hash base customization for single page
-            'enabled' => (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8005000),
+            'enabled' => true,
         ],
     ];
 

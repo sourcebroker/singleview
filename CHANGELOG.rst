@@ -7,6 +7,7 @@ Changelog
 2) Disable hashBase customization by default for TYPO3 higher or equal 8.5
 3) Remove useless feature to throw page not found exception on missing cHash.
 4) Change $boot to call_user_func()
+5) Enable hashBase customization with content_form_pid by default for all TYPO3 versions.
 
 1.2.2
 ~~~~~
