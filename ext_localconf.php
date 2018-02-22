@@ -4,13 +4,9 @@ defined('TYPO3_MODE') || die('Access denied.');
 
 $boot = function () {
     $defaultConfiguration = [
-        'pageNotFoundOnMissingChash' => [
-            // Turn on/off page not found error on single pages when cHash is not passed via URL
-            'enabled' => true,
-        ],
         'hashBaseCustomization' => [
             // Turn on/off hash base customization for single page
-            'enabled' => true,
+            'enabled' => (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 8005000),
         ],
     ];
 
@@ -22,11 +18,6 @@ $boot = function () {
     );
 
     $singleViewConf = $GLOBALS['TYPO3_CONF_VARS']['EXT']['EXTCONF']['singleview'];
-
-    if ($singleViewConf['pageNotFoundOnMissingChash']['enabled']) {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['determineId-PreProcessing']['singleview_pageNotFoundOnMissingChash']
-            = \SourceBroker\Singleview\Hooks\PageNotFoundOnMissingChash::class . '->init';
-    }
 
     if ($singleViewConf['hashBaseCustomization']['enabled']) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['createHashBase']['singleview_hashBaseCustomization'] =

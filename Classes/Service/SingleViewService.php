@@ -60,7 +60,7 @@ class SingleViewService
     /**
      * @return SingleViewConfig[]
      */
-    private static function getActiveSingleViewConfigs(): array
+    private static function getActiveSingleViewConfigs()
     {
         return array_filter(
             self::$singleViewConfigs,
@@ -76,7 +76,7 @@ class SingleViewService
      *
      * @return bool
      */
-    private static function isCurrentPageId(int $id): bool
+    private static function isCurrentPageId($id)
     {
         return (int)self::getTsfe()->id === $id;
     }
@@ -84,7 +84,7 @@ class SingleViewService
     /**
      * @return TypoScriptFrontendController
      */
-    private static function getTsfe(): TypoScriptFrontendController
+    private static function getTsfe()
     {
         return $GLOBALS['TSFE'];
     }

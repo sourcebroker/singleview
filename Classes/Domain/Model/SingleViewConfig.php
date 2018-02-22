@@ -34,11 +34,6 @@ class SingleViewConfig
     private $hashBase = '';
 
     /**
-     * @var boolean
-     */
-    private $throwPageNotFoundOnMissingChash = true;
-
-    /**
      * @return int
      */
     public function getListPid()
@@ -107,7 +102,7 @@ class SingleViewConfig
      */
     public function isConditionMatch()
     {
-        return is_callable($this->condition) ? !!($this->condition)() : !!$this->condition;
+        return is_callable($this->condition) ? call_user_func($this->condition) : !!$this->condition;
     }
 
     /**
@@ -115,7 +110,7 @@ class SingleViewConfig
      */
     public function getHashBase()
     {
-        return is_callable($this->hashBase) ? (string)($this->hashBase)() : $this->hashBase;
+        return is_callable($this->hashBase) ? (string)call_user_func($this->hashBase) : $this->hashBase;
     }
 
     /**
@@ -124,13 +119,5 @@ class SingleViewConfig
     public function setHashBase($hashBase)
     {
         $this->hashBase = $hashBase;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isThrowPageNotFoundOnMissingChash(): bool
-    {
-        return $this->throwPageNotFoundOnMissingChash;
     }
 }
