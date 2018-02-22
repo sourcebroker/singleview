@@ -66,7 +66,7 @@ Each configuration of the singleview extension has to be registered in your ext_
             $newsParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1');
             return !empty($newsParams['news']);
         },
-        ['backend_layout', 'backend_layout_next_level'],
+        ['backend_layout'],
     );
 
 Parameters:
@@ -76,12 +76,15 @@ Parameters:
 2) Second param is PID of the single view page.
 
 3) Third param is closure which returns boolean (or boolean value as a condition) which needs to be met to show
-   single page on list view page. Closure is good because at ext_localconf.php the ext:realurl did not decoded yet the
-   $_GET array so the value of \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1') is empty. But at the place
+   single page on list view page. Closure is good here because at ext_localconf.php level the ext:realurl did not decoded
+   yet the url so the value of \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1') is empty. But at the place
    the closure is run the \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1') will return good value.
 
 4) Fourth param is optional and its array of strings with names of the fields which will be copied from single page
    to list page.
+
+   If you use backend_layouts then probably you should put there ['backend_layout'] so at the page with list view
+   the proper 'backend_layout' form single view will be shown.
 
 
 **IMPORTANT!**
@@ -92,14 +95,15 @@ You must change the uid of page used to build single view links. It should point
 Technical background
 ********************
 
-The idea behind is to use TYPO3 build in feature "Show content from pid" that you can find in page properties. In this
-extension value for this field is set dynamically based on $_GET parameter. When TYPO3 renders page with list view
-then ext:singleview checks if $_GET parameter has single view request. If this is true then it sets "content_from_pid"
-field with value of single view page uid. This way single view page with its content and layout is shown on list view
-page.
+The idea behind is to use TYPO3 build in feature "Show content from pid" which you can find in page properties. In this
+extension value for "Show content from pid" field is set dynamically based on $_GET parameter. When TYPO3 renders page
+with list view then ext:singleview checks if $_GET parameter has single view request. If this is true then it sets
+"content_from_pid" field with value of single view page uid. This way single view page with its content and layout
+is shown on list view page.
 
 To be sure that TYPO3 will not use one cache for list view and single view a "content_from_pid" is added to hashBase.
-
+You can deactivate this behaviour by setting:
+``$GLOBALS['TYPO3_CONF_VARS']['EXT']['EXTCONF']['singleview']['hashBaseCustomization']['enabled'] = false;``
 
 Changelog
 *********
