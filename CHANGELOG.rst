@@ -8,6 +8,7 @@ Changelog
 3) Remove useless feature to throw page not found exception on missing cHash.
 4) Change $boot to call_user_func()
 5) Enable hashBase customization with content_form_pid by default for all TYPO3 versions.
+6) Cast $id to int (it was php7 type cast before)
 
 1.2.2
 ~~~~~

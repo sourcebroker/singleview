@@ -49,7 +49,7 @@ class SingleViewPagePathLogic
         return $this->getDb()->exec_SELECTgetSingleRow(
             '*',
             'pages',
-            'uid = ' . $id . ' ' . $this->getPageRepository()->enableFields('pages')
+            'uid = ' . intval($id) . ' ' . $this->getPageRepository()->enableFields('pages')
         );
     }
 
