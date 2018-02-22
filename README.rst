@@ -60,23 +60,28 @@ Each configuration of the singleview extension has to be registered in your ext_
 
     <?php
     \SourceBroker\Singleview\Service\SingleViewService::registerConfig(
-        // PID of the list view page
-        2, 
-        // PID of the single view page
-        50,
-        // Closure which returns boolean or boolean value as a condition which needs to be met to apply content_from_pid replacement
+        1,
+        2,
         function() {
             $newsParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1');
             return !empty($newsParams['news']);
         },
-        // (optional) Array of strings with names of the fields which will be copied from single page to list page
-        ['tx_local_breadcrumb_hide_all'],
-        // (optional) Closure which returns string or string which will be used to create hashBase
-        function() {
-            $newsParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1');
-            return 'news-'.(int)$newsParams['news'];
-        }
+        ['backend_layout', 'backend_layout_next_level'],
     );
+
+Parameters:
+
+1) First param is PID of the list view page.
+
+2) Second param is PID of the single view page.
+
+3) Third param is closure which returns boolean (or boolean value as a condition) which needs to be met to show
+   single page on list view page. Closure is good because at ext_localconf.php the ext:realurl did not decoded yet the
+   $_GET array so the value of \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1') is empty. But at the place
+   the closure is run the \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1') will return good value.
+
+4) Fourth param is optional and its array of strings with names of the fields which will be copied from single page
+   to list page.
 
 
 **IMPORTANT!**
