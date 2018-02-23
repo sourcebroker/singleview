@@ -27,14 +27,14 @@ Lets take following list view url:
   https://www.example.com/list/
 
 TYPO3 / realurl default is that when you put single view on different page then there is no easy way to remove it from
-realurl links. You will get something like below. Single view on separate page named "detail":
+realurl links. You will get something like below (single view is on separate page named "detail"):
 
 ::
 
   https://www.example.com/list/detail/title-of-single-item/
 
-If you use ``ext:singleview`` then single view can be on different page than list view but the realurl links will still
-look nice like below - so no ``/detail/`` part.
+If you would use ``ext:singleview`` then you could put single view on different page than list view but the realurl
+links will still look nice like below - so no ``/detail/`` part.
 
 ::
 
@@ -53,12 +53,13 @@ Use composer:
 Usage
 *****
 
-Each configuration of the singleview extension has to be registered in your ext_localconf.php file using
-``\SourceBroker\Singleview\Service\SingleViewService::registerConfig`` static method as below.
+Each configuration of the extLsingleview settings has to be registered in your ext_localconf.php file using
+``\SourceBroker\Singleview\Service\SingleViewService::registerConfig()`` static method as in example below:
 
 ::
 
     <?php
+
     \SourceBroker\Singleview\Service\SingleViewService::registerConfig(
         1,
         2,
@@ -69,7 +70,7 @@ Each configuration of the singleview extension has to be registered in your ext_
         ['backend_layout'],
     );
 
-Parameters:
+Parameters of registerConfig() method:
 
 1) First param is PID of the list view page.
 
