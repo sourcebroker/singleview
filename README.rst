@@ -33,7 +33,7 @@ realurl links. You will get something like below (single view is on separate pag
 
   https://www.example.com/list/detail/title-of-single-item/
 
-If you would use ``ext:singleview`` then you could put single view on different page than list view but the realurl
+If you will use ``ext:singleview`` then you can put single view on different page than list view but the realurl
 links will still look nice like below - so no ``/detail/`` part.
 
 ::
@@ -53,7 +53,7 @@ Use composer:
 Usage
 *****
 
-Each configuration of the extLsingleview settings has to be registered in your ext_localconf.php file using
+Each configuration of the ext:singleview settings has to be registered in your ext_localconf.php file using
 ``\SourceBroker\Singleview\Service\SingleViewService::registerConfig()`` static method as in example below:
 
 ::
