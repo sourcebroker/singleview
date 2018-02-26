@@ -16,7 +16,7 @@ TYPO3 Extension ``singleview``
 What does it do?
 ****************
 
-This extension allows to display single view on different page than list view and still keep urls user and SEO friendly.
+This extension allows to **display single view on different page than list view** and still keep urls user and SEO friendly.
 
 Look at example below for better understanding.
 
