@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+1.3.1
+~~~~~
+1) [BUGFIX] Lack of dependency to TYPO3 7.6.0 in composer.json.
+
 1.3.0
 ~~~~~
 1) [FEATURE] Implement support for TYPO3 7.6 and PHP 5.6.
