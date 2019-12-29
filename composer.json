@@ -22,7 +22,6 @@
     }
   },
   "replace": {
-    "singleview": "self.version",
     "typo3-ter/singleview": "self.version"
   },
   "config": {
