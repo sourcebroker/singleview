@@ -26,15 +26,15 @@ Lets take following list view url:
 
   https://www.example.com/list/
 
-TYPO3 default is that when you put single view on different page then there is no easy way to remove it from
-nice from url/slug. You will get something like below (single view is on separate page named "detail"):
+TYPO3 default is that when you put single view on different page then there is no easy way to remove it
+from slugified url. You will get something like below (single view is on separate page named "detail"):
 
 ::
 
   https://www.example.com/list/detail/title-of-single-item/
 
 If you will use ``ext:singleview`` then you can put single view on different page than list view but the slugified
-links will still look nice like below - so no ``/detail/`` part.
+url will still look nice like below - so no ``/detail/`` part.
 
 ::
 
@@ -54,7 +54,7 @@ Usage
 *****
 
 Each configuration of the ext:singleview settings has to be registered in your ext_localconf.php file using
-``\SourceBroker\Singleview\Service\SingleViewService::registerConfig()`` static method as in example below for ext:news
+``\SourceBroker\Singleview\Service\SingleViewService::registerConfig()`` static method as in example below (for ext:news)
 
 ::
 
@@ -87,7 +87,7 @@ Parameters of registerConfig() method:
 
 **IMPORTANT!**
 
-You must change the uid of page used to build single view links. It should point to list view page now.
+Single view links should point to the same page uid as list view.
 
 
 Technical background
