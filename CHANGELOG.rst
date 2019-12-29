@@ -4,6 +4,7 @@ Changelog
 master
 ~~~~~~
 1) [TASK] Drop support for TYPO3 7.6, add support for TYPO3 9.5
+2) [BUGFIX] Database compatibility.
 
 1.3.1
 ~~~~~

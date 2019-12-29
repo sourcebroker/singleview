@@ -3,9 +3,9 @@
 namespace SourceBroker\Singleview\Hooks;
 
 use SourceBroker\Singleview\Service\SingleViewService;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
-use TYPO3\CMS\Frontend\Page\PageRepository;
 
 /**
  * Class SingleViewPagePathLogic
@@ -40,40 +40,26 @@ class SingleViewPagePathLogic
     }
 
     /**
-     * @param int $id
-     *
-     * @return array|false|null
+     * @return array|false
      */
     private function getPageRecordById($id)
     {
-        return $this->getDb()->exec_SELECTgetSingleRow(
-            '*',
-            'pages',
-            'uid = ' . intval($id) . ' ' . $this->getPageRepository()->enableFields('pages')
-        );
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
+        $row = $queryBuilder->select('*')
+            ->from('pages')
+            ->where($queryBuilder->expr()->eq('uid',
+                $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT)))
+            ->execute()
+            ->fetch();
+        return $row ?? [];
     }
 
     /**
      * @return TypoScriptFrontendController
      */
-    private function getTsfe()
+    private function getTsfe() : TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
     }
 
-    /**
-     * @return PageRepository
-     */
-    private function getPageRepository()
-    {
-        return $this->getTsfe()->sys_page;
-    }
-
-    /**
-     * @return DatabaseConnection
-     */
-    private function getDb()
-    {
-        return $GLOBALS['TYPO3_DB'];
-    }
 }
