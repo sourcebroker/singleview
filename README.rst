@@ -26,14 +26,14 @@ Lets take following list view url:
 
   https://www.example.com/list/
 
-TYPO3 / realurl default is that when you put single view on different page then there is no easy way to remove it from
-realurl links. You will get something like below (single view is on separate page named "detail"):
+TYPO3 default is that when you put single view on different page then there is no easy way to remove it from
+nice from url/slug. You will get something like below (single view is on separate page named "detail"):
 
 ::
 
   https://www.example.com/list/detail/title-of-single-item/
 
-If you will use ``ext:singleview`` then you can put single view on different page than list view but the realurl
+If you will use ``ext:singleview`` then you can put single view on different page than list view but the slugified
 links will still look nice like below - so no ``/detail/`` part.
 
 ::
@@ -54,7 +54,7 @@ Usage
 *****
 
 Each configuration of the ext:singleview settings has to be registered in your ext_localconf.php file using
-``\SourceBroker\Singleview\Service\SingleViewService::registerConfig()`` static method as in example below:
+``\SourceBroker\Singleview\Service\SingleViewService::registerConfig()`` static method as in example below for ext:news
 
 ::
 
@@ -77,9 +77,9 @@ Parameters of registerConfig() method:
 2) Second param is PID of the single view page.
 
 3) Third param is closure which returns boolean (or boolean value as a condition) which needs to be met to show
-   single page on list view page. Closure is good here because at ext_localconf.php level the ext:realurl did not decoded
-   yet the url so the value of ``\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1')`` is empty. But at the place
-   the closure is run the ``\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1')`` will return good value.
+   single page on list view page. Closure is good here because at ext_localconf.php level the url/slug is not decoded
+   yet so the value of ``\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1')`` is empty. But at the place
+   the closure is executed the ``\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1')`` will return good value.
 
 4) Fourth param is optional and its array of strings with names of the fields which will be copied from single page
    to list page. If you use backend_layouts for managing your layouts then probably you should put there ['backend_layout']
