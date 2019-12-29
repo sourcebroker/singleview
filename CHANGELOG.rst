@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+master
+~~~~~~
+1) [TASK] Drop support for TYPO3 7.6, add support for TYPO3 9.5
+
 1.3.1
 ~~~~~
 1) [BUGFIX] Lack of dependency to TYPO3 7.6.0 in composer.json.
