@@ -61,5 +61,4 @@ class SingleViewPagePathLogic
     {
         return $GLOBALS['TSFE'];
     }
-
 }
