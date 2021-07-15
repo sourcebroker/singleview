@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+2.1.0
+~~~~~
+1) [TASK] Add support for TYPO3 10.4.
+
 2.0.0
 ~~~~~
 1) [TASK] Drop support for TYPO3 7.6, TYPO3 8.7. Add support for TYPO3 9.5. For TYPO3 7.6 ad 8.7 install version 1.3.
