@@ -1,9 +1,6 @@
 TYPO3 Extension ``singleview``
 #############################
 
-  .. image:: https://styleci.io/repos/115010338/shield?branch=master
-    :target: https://styleci.io/repos/115010338
-
   .. image:: https://poser.pugx.org/sourcebroker/singleview/v/stable
     :target: https://packagist.org/packages/sourcebroker/singleview
 
