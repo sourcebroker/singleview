@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  SourceBroker\Singleview\:
+    resource: '../Classes/*'
+
+  SourceBroker\Singleview\EventListener\ModifyUrlForCanonicalTagEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'ModifyUrlForCanonicalTagEventListener'
+        before: 'legacy-slot'
+        event: TYPO3\CMS\Seo\Event\ModifyUrlForCanonicalTagEvent

@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+2.1.1
+~~~~~
+1) [TASK] Add support for canonical URLs for TYPO3 core EXT:code
+
 2.1.0
 ~~~~~
 1) [TASK] Add support for TYPO3 10.4.
