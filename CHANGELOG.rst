@@ -5,6 +5,7 @@ master
 ~~~~~~
 1) [TASK] Drop style CI.
 2) [TASK] Add ddev.
+3) [TASK] Move ext icon to folder.
 
 2.1.1
 ~~~~~
