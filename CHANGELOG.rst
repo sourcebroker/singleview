@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+master
+~~~~~~
+1) [TASK] Drop style CI.
+
 2.1.1
 ~~~~~
 1) [TASK] Add support for canonical URLs for TYPO3 core EXT:code
