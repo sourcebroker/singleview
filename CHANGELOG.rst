@@ -4,6 +4,7 @@ Changelog
 master
 ~~~~~~
 1) [TASK] Drop style CI.
+2) [TASK] Add ddev.
 
 2.1.1
 ~~~~~
