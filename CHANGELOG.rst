@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+4.0.0
+~~~~~
+1) [BREAKING/BUGFIX] Add/fix fallback for fields. Before this fix fallback from fields from single to list page were done
+   only for current page ($tsfe->page). After this fix this fallback is done also for list view page that is in the rootline
+   ($tsfe->tmpl->rootLine). This is breaking change because it can change the way how page is rendered.
+   For example it can affect usage as like "stdWrap.data = levelfield:-1,tx_local_my_field,slide".
+
 3.0.0
 ~~~~~
 1) [TASK] Drop style CI.

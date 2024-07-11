@@ -7,42 +7,39 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
-/**
- * Class SingleViewPagePathLogic
- * @package SourceBroker\Singleview\Hooks
- */
 class SingleViewPagePathLogic
 {
 
-    /**
-     * @return void
-     */
     public function init()
     {
         $singleView = SingleViewService::getFirstActiveSingleViewConfig();
-
-        if (empty($singleView)) {
+        if ($singleView === null) {
             return;
         }
 
-        $singlePageRecord = $this->getPageRecordById($singleView->getSinglePid());
+        $tsfe = $this->getTsfe();
+        $singlePid = $singleView->getSinglePid();
+        $listPid = $singleView->getListPid();
 
-        if (empty($singlePageRecord)) {
+        $singlePageRecord = $this->getPageRecordById($singlePid);
+        if ($singlePageRecord == null) {
             return;
         }
 
-        $this->getTsfe()->page['content_from_pid'] = $singleView->getSinglePid();
+        $tsfe->page['content_from_pid'] = $singlePid;
+
         foreach ($singleView->getFields() as $fieldName) {
-            if (isset($singlePageRecord[$fieldName])) {
-                $this->getTsfe()->page[$fieldName] = $singlePageRecord[$fieldName];
+            $tsfe->page[$fieldName] = $singlePageRecord[$fieldName] ?? $tsfe->page[$fieldName];
+            foreach ($tsfe->tmpl->rootLine as &$pageRecord) {
+                if ($pageRecord['uid'] === $listPid) {
+                    $pageRecord[$fieldName] = $singlePageRecord[$fieldName] ?? $pageRecord[$fieldName];
+                    break;
+                }
             }
         }
     }
 
-    /**
-     * @return array|false
-     */
-    private function getPageRecordById($id)
+    private function getPageRecordById($id): ?array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $row = $queryBuilder->select('*')
@@ -51,13 +48,10 @@ class SingleViewPagePathLogic
                 $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT)))
             ->execute()
             ->fetch();
-        return $row ?? [];
+        return $row ?? null;
     }
 
-    /**
-     * @return TypoScriptFrontendController
-     */
-    private function getTsfe() : TypoScriptFrontendController
+    private function getTsfe(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
     }
