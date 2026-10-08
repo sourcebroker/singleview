@@ -6,10 +6,22 @@ services:
 
   SourceBroker\Singleview\:
     resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  SourceBroker\Singleview\EventListener\PageResolvedEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'singleview/page-resolved'
+        event: TYPO3\CMS\Frontend\Event\AfterPageAndLanguageIsResolvedEvent
+
+  SourceBroker\Singleview\EventListener\PageCacheIdentifierEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'singleview/page-cache-identifier'
+        event: TYPO3\CMS\Frontend\Event\BeforePageCacheIdentifierIsHashedEvent
 
   SourceBroker\Singleview\EventListener\ModifyUrlForCanonicalTagEventListener:
     tags:
       - name: event.listener
-        identifier: 'ModifyUrlForCanonicalTagEventListener'
-        before: 'legacy-slot'
+        identifier: 'singleview/canonical'
         event: TYPO3\CMS\Seo\Event\ModifyUrlForCanonicalTagEvent

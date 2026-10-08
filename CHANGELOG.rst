@@ -1,6 +1,20 @@
 Changelog
 ---------
 
+5.0.0
+~~~~~
+1) [TASK] Drop support for TYPO3 10.4 and 11.5. Add support for TYPO3 13.4 and 14.3.
+2) [BREAKING] Hooks replaced with PSR-14 event listeners. ``$GLOBALS['TSFE']`` is not used anymore. The
+   condition closure given to ``registerConfig()`` should not use ``GeneralUtility::_GET()`` anymore. The closure
+   now receives current ``ServerRequestInterface`` as first argument. Read resolved frontend arguments from the
+   ``routing`` request attribute (``TYPO3\CMS\Core\Routing\PageArguments``).
+3) [BREAKING] ``SingleViewService::getFirstActiveSingleViewConfig()`` requires current page id as argument.
+4) [BUGFIX] Default config of ``hashBaseCustomization`` no longer overrides config set by user.
+5) [BREAKING] The optional ``hashBase`` closure passed to ``registerConfig()`` receives the current
+   ``ServerRequestInterface`` as its first argument.
+6) [DOC] Document the fifth ``registerConfig()`` argument and why route-enhanced arguments should be read from
+   ``PageArguments`` instead of raw query parameters.
+
 4.0.0
 ~~~~~
 1) [BREAKING/BUGFIX] Add/fix fallback for fields. Before this fix fallback from fields from single to list page were done

@@ -2,6 +2,8 @@
 
 namespace SourceBroker\Singleview\Domain\Model;
 
+use Psr\Http\Message\ServerRequestInterface;
+
 /**
  * Class SingleViewConfig
  * @package SourceBroker\Singleview\Domain\Model
@@ -98,19 +100,21 @@ class SingleViewConfig
     }
 
     /**
-     * @return boolean
+     * The condition callable receives current request as first argument.
      */
-    public function isConditionMatch()
+    public function isConditionMatch(ServerRequestInterface $request): bool
     {
-        return is_callable($this->condition) ? call_user_func($this->condition) : !!$this->condition;
+        return is_callable($this->condition) ? (bool)call_user_func($this->condition, $request) : !!$this->condition;
     }
 
     /**
-     * @return string
+     * The hash base callable receives current request as first argument.
      */
-    public function getHashBase()
+    public function getHashBase(ServerRequestInterface $request): string
     {
-        return is_callable($this->hashBase) ? (string)call_user_func($this->hashBase) : $this->hashBase;
+        return is_callable($this->hashBase)
+            ? (string)call_user_func($this->hashBase, $request)
+            : (string)$this->hashBase;
     }
 
     /**

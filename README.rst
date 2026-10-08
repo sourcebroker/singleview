@@ -57,12 +57,20 @@ Each configuration of the ext:singleview settings has to be registered in your e
 
     <?php
 
+    use Psr\Http\Message\ServerRequestInterface;
+    use TYPO3\CMS\Core\Routing\PageArguments;
+
     \SourceBroker\Singleview\Service\SingleViewService::registerConfig(
         1,
         2,
-        function() {
-            $newsParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1');
-            return !empty($newsParams['news']);
+        static function (ServerRequestInterface $request): bool {
+            $pageArguments = $request->getAttribute('routing');
+            if (!$pageArguments instanceof PageArguments) {
+                return false;
+            }
+
+            $newsParams = $pageArguments->get('tx_news_pi1') ?? [];
+            return is_array($newsParams) && !empty($newsParams['news']);
         },
         ['backend_layout'],
     );
@@ -75,11 +83,38 @@ Parameters of registerConfig() method:
 
 3) Third param is closure which returns boolean (or boolean value as a condition) which needs to be met to show
    single page on list view page. Closure is good here because at ext_localconf.php level the url/slug is not decoded
-   yet so the value of ``\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1')`` is empty. But at the place
-   the closure is executed the ``\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1')`` will return good value.
+   yet so the request arguments are not available. The closure receives the current request as first argument,
+   so resolved frontend arguments can be read from the ``routing`` request attribute, which contains a
+   ``TYPO3\CMS\Core\Routing\PageArguments`` instance.
+
+   Use ``PageArguments::get()`` or ``PageArguments::getArguments()`` for values handled by TYPO3 route enhancers.
+   ``$request->getQueryParams()`` contains parameters supplied directly in the URL query string and may not contain
+   values decoded from a slug. Using ``PageArguments`` also makes route arguments take precedence if the same argument
+   is additionally supplied in the query string.
 
 4) Fourth param is optional and its array of strings with names of the fields which will be copied from single page
    to list page. If you use backend_layouts for managing your layouts then probably you should put there ['backend_layout']
+
+5) Fifth param is an optional string or closure used as an additional page cache discriminator. The closure receives
+   the current ``ServerRequestInterface`` as its first argument. Use it when the rendered variant depends on a value
+   which is not already included in TYPO3's page cache identifier. For example:
+
+   ::
+
+       static function (ServerRequestInterface $request): string {
+           $pageArguments = $request->getAttribute('routing');
+           if (!$pageArguments instanceof PageArguments) {
+               return '';
+           }
+
+           $newsParams = $pageArguments->get('tx_news_pi1') ?? [];
+           $newsUid = is_array($newsParams) ? (int)($newsParams['news'] ?? 0) : 0;
+
+           return $newsUid > 0 ? 'news:' . $newsUid : '';
+       }
+
+   Route arguments already included by TYPO3 do not normally need to be repeated here. Do not use the complete query
+   string, cookies or user-specific values as the hash base. User-specific output should not use the shared page cache.
 
 
 **IMPORTANT!**
@@ -91,8 +126,8 @@ Technical background
 ********************
 
 The idea behind is to use TYPO3 build in feature "Show content from pid" which you can find in page properties. In this
-extension value for "Show content from pid" field is set dynamically based on $_GET parameter. When TYPO3 renders page
-with list view then ext:singleview checks if $_GET parameter has single view request. If this is true then it sets
+extension value for "Show content from pid" field is set dynamically based on request parameters. When TYPO3 renders page
+with list view then ext:singleview checks if request parameters have single view request. If this is true then it sets
 "content_from_pid" field with value of single view page uid. This way single view page with its content and layout
 is shown on list view page.
 

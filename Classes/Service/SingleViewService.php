@@ -1,35 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SourceBroker\Singleview\Service;
 
+use Psr\Http\Message\ServerRequestInterface;
 use SourceBroker\Singleview\Domain\Model\SingleViewConfig;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
-/**
- * Class SingleViewService
- * @package SourceBroker\Singleview\Service
- */
 class SingleViewService
 {
     /**
      * @var SingleViewConfig[]
      */
-    private static $singleViewConfigs = [];
+    private static array $singleViewConfigs = [];
 
     /**
      * @param int $listPid
      * @param int $singlePid
      * @param callable|boolean $condition
      * @param string[] $fields
-     * @param callable|string $hashBase
-     *
-     * @return void
+     * @param callable|string|null $hashBase Callable receives current request as first argument.
      */
-    public static function registerConfig($listPid, $singlePid, $condition, $fields = [], $hashBase = null)
+    public static function registerConfig($listPid, $singlePid, $condition, $fields = [], $hashBase = null): void
     {
         $singleViewConfig = new SingleViewConfig();
-        $singleViewConfig->setListPid($listPid);
-        $singleViewConfig->setSinglePid($singlePid);
+        $singleViewConfig->setListPid((int)$listPid);
+        $singleViewConfig->setSinglePid((int)$singlePid);
         $singleViewConfig->setCondition($condition);
 
         if (!empty($fields)) {
@@ -43,49 +39,14 @@ class SingleViewService
         self::$singleViewConfigs[] = $singleViewConfig;
     }
 
-    /**
-     * @return null|SingleViewConfig
-     */
-    public static function getFirstActiveSingleViewConfig()
+    public static function getFirstActiveSingleViewConfig(int $currentPageId, ServerRequestInterface $request): ?SingleViewConfig
     {
-        $activeSingleViewConfigs = SingleViewService::getActiveSingleViewConfigs();
-
-        if (empty($activeSingleViewConfigs)) {
-            return null;
+        foreach (self::$singleViewConfigs as $singleViewConfig) {
+            if ($singleViewConfig->getListPid() === $currentPageId && $singleViewConfig->isConditionMatch($request)) {
+                return $singleViewConfig;
+            }
         }
 
-        return array_shift($activeSingleViewConfigs);
-    }
-
-    /**
-     * @return SingleViewConfig[]
-     */
-    private static function getActiveSingleViewConfigs()
-    {
-        return array_filter(
-            self::$singleViewConfigs,
-            function ($singleViewConfig) {
-                /** @var SingleViewConfig $singleViewConfig */
-                return self::isCurrentPageId($singleViewConfig->getListPid()) && $singleViewConfig->isConditionMatch();
-            }
-        );
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return bool
-     */
-    private static function isCurrentPageId($id)
-    {
-        return (int)self::getTsfe()->id === $id;
-    }
-
-    /**
-     * @return TypoScriptFrontendController
-     */
-    private static function getTsfe()
-    {
-        return $GLOBALS['TSFE'];
+        return null;
     }
 }
